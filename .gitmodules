@@ -1,0 +1,3 @@
+[submodule "www/libraries/Quokka"]
+	path = www/libraries/Quokka
+	url = git@github.com:Vagaweb/Quokka.git
