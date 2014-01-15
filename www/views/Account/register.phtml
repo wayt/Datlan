@@ -1,0 +1,27 @@
+<article>
+    <h1> Participez a la LAN ! </h1>
+    <section>
+        <h2>Inscris toi et participe a l'evenement !</h2>
+        <?php if ($form->hasError()): ?>
+        <div class="error">
+        <ul class="list">
+        <?php foreach ($form->getErrors() as $error): ?>
+            <li><?php echo $error; ?></li>
+        <?php endforeach; ?>
+        </ul>
+        </div>
+        <?php endif; ?>
+        <form action="" method="post">
+            <p><label>Nom :</label><?= $form->getElement('lastname')->render() ?></p>
+            <p><label>Prenom :</label><?= $form->getElement('firstname')->render() ?></p>
+            <p><label>E-mail :</label><?= $form->getElement('email')->render() ?></p>
+            <p><label>Adresse :</label><?= $form->getElement('address')->render() ?></p>
+            <p><label>Ville :</label><?= $form->getElement('city')->render() ?></p>
+            <p><label>Code postal :</label><?= $form->getElement('postcode')->render() ?></p>
+            <p><label>Nom d'utilisateur :</label><?= $form->getElement('username')->render() ?></p>
+            <p><label>Mot de passe :</label><?= $form->getElement('password')->render() ?></p>
+            <p><label>Confirmation du mot de passe :</label><?= $form->getElement('password2')->render() ?></p>
+            <p class="center"><input class="button" type="submit" value="S'inscrire !" /></p>
+        </form>
+    </section>
+</article>

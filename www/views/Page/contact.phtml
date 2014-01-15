@@ -1,0 +1,21 @@
+<article>
+    <h1>Le contact, c'est important</h1>
+    <section>
+        <h2>Contactez nous</h2>
+        <p>Vous pouvez nous contacter pour :</p>
+        <ul class="list">
+            <li>devenir partenaire de l'evenement</li>
+            <li>obtenir plus d'informations</li>
+            <li>nous informer d'un probleme sur le site web</li>
+        </ul>
+        <p>N'hesitez pas a nous rejoindre sur <a href="">Twitter</a> et <a href="">Facebook</a></p>
+        <form action="" method="post">
+            <p><label>Nom :</label><?= $form->getElement('lastname')->render() ?></p>
+            <p><label>Prenom :</label><?= $form->getElement('firstname')->render() ?></p>
+            <p><label>E-mail :</label><?= $form->getElement('email')->render() ?></p>
+            <p><label>Objet :</label><?= $form->getElement('title')->render() ?></p>
+            <p><label>Message :</label><?= $form->getElement('body')->render() ?></p>
+            <p class="center"><input class="button" type="submit" value="Envoyer le message" /></p>
+        </form>
+    </section>
+</article>

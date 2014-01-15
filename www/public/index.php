@@ -26,14 +26,35 @@ $autoload->register();
 $application = new Quokka\Mvc\Application();
 
 /**
+* Db
+*/
+$db = new Quokka\Database\PDO('mysql:dbname=datlan;host:localhost', 'root', '');
+$db->setMapperNamespace('Application\\Model');
+$application->addResource('db', $db);
+
+/**
+ * Auth
+ */
+$auth = new Quokka\Auth\Auth($db->getMapper('user'));
+$application->addResource('auth', $auth);
+
+/**
+ * Plugins
+ */
+$application->addPlugin(new Application\Plugin\AuthPlugin());
+
+/**
  * Routing
  */
-$application->getRouter()->addRule('home', '/$', NULL, 'home', 'index');
-$application->getRouter()->addRule('stand', '/stands$', NULL, 'home', 'stand');
-$application->getRouter()->addRule('contact', '/contact$', NULL, 'home', 'contact');
-$application->getRouter()->addRule('login', '/login$', NULL, 'account', 'login');
-$application->getRouter()->addRule('logout', '/logout$', NULL, 'account', 'logout');
-$application->getRouter()->addRule('register', '/register$', NULL, 'account', 'register');
+$application->getRouter()->addRule('a', '/$', NULL, 'page', 'index');
+$application->getRouter()->addRule('b', '/stands$', NULL, 'page', 'stand');
+$application->getRouter()->addRule('c', '/contact$', NULL, 'page', 'contact');
+$application->getRouter()->addRule('d', '/login$', NULL, 'account', 'login');
+$application->getRouter()->addRule('e', '/logout$', NULL, 'account', 'logout');
+$application->getRouter()->addRule('f', '/register$', NULL, 'account', 'register');
+$application->getRouter()->addRule('g', '/register-success$', NULL, 'account', 'registersuccess');
+$application->getRouter()->addRule('h', '/activate-account$', NULL, 'account', 'activateaccount');
+$application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
 
 /**
  * Layout

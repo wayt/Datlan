@@ -3,8 +3,9 @@
 namespace Application\Controller;
 
 use \Quokka\Mvc\Controller\AbstractController;
+use Application\Form\ContactForm;
 
-class HomeController extends AbstractController {
+class PageController extends AbstractController {
 
     public function init() {
 
@@ -22,6 +23,10 @@ class HomeController extends AbstractController {
 
     public function contactAction() {
 
-        return $this->render();
+        $form = new ContactForm();
+
+        return $this->render([
+            'form' => $form
+        ]);
     }
 }

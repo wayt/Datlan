@@ -14,13 +14,19 @@
 <body>
     <header id="header">
         <div class="container">
-            <h1>Datlan</h1>
+            <h1><img height="60" src="/images/logo.png" title="Datlan" alt="Datlan" /></h1>
             <nav id="nav">
                 <ul>
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="">Les stands</a></li>
-                    <li><a href="">Contacts</a></li>
-                    <li><a href="">Mon compte</a></li>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/stands">Les stands</a></li>
+                    <li><a href="/contact">Contacts</a></li>
+                    <?php if ($auth->hasIdentity()): ?>
+                    <li><a href="/account">Mon compte</a></li>
+                    <li><a href="/logout">Se deconnecter</a></li>
+                    <?php else: ?>
+                    <li><a href="/register">S'inscrire</a></li>
+                    <li><a href="/login">Se connecter</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
@@ -29,7 +35,9 @@
         <?= $content ?>
     </div>
     <footer id="footer">
-        &copy; Copyright Datlan 2014
+        <div class="container">
+            &copy; Copyright Datlan 2014
+        </div>
     </footer>
 </body>
 </html>
