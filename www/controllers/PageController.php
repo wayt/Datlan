@@ -47,11 +47,17 @@ class PageController extends AbstractController {
                     "<p>Content :" .$form->getElement('body')->getValue() . "</p>",
                     $headers
                 );
+                $this->_response->redirect('/contact-success');
             }
         }
 
         return $this->render([
             'form' => $form
         ]);
+    }
+
+    public function contactsuccessAction() {
+
+        return $this->render();
     }
 }

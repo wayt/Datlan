@@ -56,6 +56,7 @@ $application->getRouter()->addRule('f', '/register$', NULL, 'account', 'register
 $application->getRouter()->addRule('g', '/register-success$', NULL, 'account', 'registersuccess');
 $application->getRouter()->addRule('h', '/activate-account$', NULL, 'account', 'activateaccount');
 $application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
+$application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'contactsuccess');
 
 /**
  * Layout
