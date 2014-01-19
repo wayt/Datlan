@@ -12,12 +12,14 @@
         </div>
         <?php endif; ?>
         <form action="" method="post">
+            <h3>Informations personnelles</h3>
             <p><label>Nom :</label><?= $form->getElement('lastname')->render() ?></p>
             <p><label>Prenom :</label><?= $form->getElement('firstname')->render() ?></p>
-            <p><label>E-mail :</label><?= $form->getElement('email')->render() ?></p>
             <p><label>Adresse :</label><?= $form->getElement('address')->render() ?></p>
             <p><label>Ville :</label><?= $form->getElement('city')->render() ?></p>
             <p><label>Code postal :</label><?= $form->getElement('postcode')->render() ?></p>
+            <h3>Informations du compte</h3>
+            <p><label>E-mail :</label><?= $form->getElement('email')->render() ?></p>
             <p><label>Nom d'utilisateur :</label><?= $form->getElement('username')->render() ?></p>
             <p><label>Mot de passe :</label><?= $form->getElement('password')->render() ?></p>
             <p><label>Confirmation du mot de passe :</label><?= $form->getElement('password2')->render() ?></p>
