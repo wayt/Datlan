@@ -34,13 +34,17 @@ class PageController extends AbstractController {
         {
             if ($form->isValid($this->_request->getPost())) {
 
-                $headers = 'From: no-reply@datlan.eu' . "\r\n" .
-                           'Reply-To: no-reply@datlan.eu' . "\r\n" .
+                $headers = 'From: ' . $form->getElement('email')->getValue() . "\r\n" .
+                           'Reply-To: ' . $form->getElement('email')->getValue() . "\r\n" .
                            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
                            'X-Mailer: PHP/' . phpversion();
 
-                mail($user->getEmail(), 'Datlan - Activation de votre compte',
-                    "<p><a href='http://www.datlan.eu/activate-account?key=" . $user->getKey() . "'>Lien d'activation de votre compte</a></p>",
+                mail('fabien.casters@epitech.eu', 'Un message du site de Datlan',
+                    "<p>Email :" .$form->getElement('email')->getValue() . "</p>" .
+                    "<p>Firstname :" .$form->getElement('firstname')->getValue() . "</p>" .
+                    "<p>Lastname :" .$form->getElement('lastname')->getValue() . "</p>" .
+                    "<p>Title :" .$form->getElement('title')->getValue() . "</p>" .
+                    "<p>Content :" .$form->getElement('body')->getValue() . "</p>",
                     $headers
                 );
             }
