@@ -7,6 +7,7 @@ set_include_path(
     '../'
 );
 
+require_once '../config.php';
 require_once 'Quokka/Loader/Autoloader.php';
 
 /**
@@ -28,7 +29,7 @@ $application = new Quokka\Mvc\Application();
 /**
 * Db
 */
-$db = new Quokka\Database\PDO('mysql:dbname=datlan;host:localhost', 'root', '');
+$db = new Quokka\Database\PDO('mysql:dbname=' . DB_NAME . ';host:localhost', DB_USER, DB_PSWD);
 $db->setMapperNamespace('Application\\Model');
 $application->addResource('db', $db);
 

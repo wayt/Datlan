@@ -51,6 +51,7 @@ class AccountController extends AbstractController {
             $this->_response->redirect('/account');
             return false;
         }
+
         if ($this->_request->getParam('starcraft', false) && $user->getTeam() == '0') {
 
             if ($this->_request->getQuery('starcraft') == 'y')
@@ -96,7 +97,6 @@ class AccountController extends AbstractController {
                 }
             }
         }
-
 
         return $this->render([
             'createForm' => $createForm,
@@ -152,20 +152,30 @@ class AccountController extends AbstractController {
 
                 $data = $this->_request->getPost();
                 $user = new User();
-                $user->setLastname($data['lastname']);
-                $user->setFirstName($data['firstname']);
-                $user->setEmail($data['email']);
-                $user->setAddress($data['address']);
-                $user->setCity($data['city']);
-                $user->setPostcode($data['postcode']);
-                $user->setUsername($data['username']);
-                $user->setPassword(sha1($data['password']));
+                $user->setLastname($form->getElement('lastname')->getValue());
+                $user->setFirstName($form->getElement('firstname')->getValue());
+                $user->setEmail($form->getElement('email')->getValue());
+                $user->setAddress($form->getElement('address')->getValue());
+                $user->setCity($form->getElement('city')->getValue());
+                $user->setPostcode($form->getElement('postcode')->getValue());
+                $user->setUsername($form->getElement('username')->getValue());
+                $user->setPassword(sha1($form->getElement('password')->getValue()));
                 $user->setActive(0);
                 $user->setRegistered(date("Y-m-d H:i:s"));
-                $user->setKey(sha1(date("Y/m/d H:i:s") . $data['email']));
+                $user->setKey(sha1(date("Y/m/d H:i:s") . $user->getEmail()));
                 $user->setTeam(0);
                 $user->setStarcraft(0);
                 $this->_userMapper->save($user);
+
+                $headers = 'From: no-reply@datlan.eu' . "\r\n" .
+                           'Reply-To: no-reply@datlan.eu' . "\r\n" .
+                           'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+                           'X-Mailer: PHP/' . phpversion();
+
+                mail($user->getEmail(), 'Datlan - Activation de votre compte',
+                    "<p><a href='http://www.datlan.eu/activate-account?key=" . $user->getKey() . "'>Lien d'activation de votre compte</a></p>",
+                    $headers
+                );
                 $this->_response->redirect('/register-success');
                 return false;
             }
