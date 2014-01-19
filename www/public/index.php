@@ -48,7 +48,7 @@ $application->addPlugin(new Application\Plugin\AuthPlugin());
  * Routing
  */
 $application->getRouter()->addRule('a', '/$', NULL, 'page', 'index');
-$application->getRouter()->addRule('b', '/stands$', NULL, 'page', 'stand');
+$application->getRouter()->addRule('b', '/stands$', NULL, 'page', 'stands');
 $application->getRouter()->addRule('c', '/contact$', NULL, 'page', 'contact');
 $application->getRouter()->addRule('d', '/login$', NULL, 'account', 'login');
 $application->getRouter()->addRule('e', '/logout$', NULL, 'account', 'logout');
@@ -57,6 +57,8 @@ $application->getRouter()->addRule('g', '/register-success$', NULL, 'account', '
 $application->getRouter()->addRule('h', '/activate-account$', NULL, 'account', 'activateaccount');
 $application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
 $application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'contactsuccess');
+$application->getRouter()->addRule('k', '/infos$', NULL, 'page', 'infos');
+$application->getRouter()->addRule('l', '/partners$', NULL, 'page', 'partners');
 
 /**
  * Layout

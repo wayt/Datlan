@@ -21,7 +21,17 @@ class PageController extends AbstractController {
         return $this->render();
     }
 
-    public function standAction() {
+    public function standsAction() {
+
+        return $this->render();
+    }
+
+    public function infosAction() {
+
+        return $this->render();
+    }
+
+    public function partnersAction() {
 
         return $this->render();
     }
