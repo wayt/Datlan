@@ -5,12 +5,17 @@ namespace Application\Controller;
 use \Quokka\Mvc\Controller\AbstractController;
 use \Application\Form\LoginForm;
 use \Application\Form\RegisterForm;
+use \Application\Form\CreateTeamForm;
+use \Application\Form\JoinTeamForm;
 use \Application\Model\User;
 use \Application\Model\UserMapper;
+use \Application\Model\Team;
+use \Application\Model\TeamMapper;
 
 class AccountController extends AbstractController {
 
     private $_userMapper;
+    private $_teamMapper;
     private $_request;
     private $_response;
     private $_auth;
@@ -20,20 +25,94 @@ class AccountController extends AbstractController {
         $this->_request = $this->getApplication()->getRequest();
         $this->_response = $this->getApplication()->getResponse();
         $this->_userMapper = $this->getApplication()->getResource('db')->getMapper('user');
+        $this->_teamMapper = $this->getApplication()->getResource('db')->getMapper('team');
         $this->_auth = $this->getApplication()->getResource('auth');
     }
 
     public function indexAction() {
 
-        return $this->render();
+        if (!$this->_auth->hasIdentity()) {
+
+            $this->_response->redirect('/login');
+            return false;
+        }
+
+        $createForm = new CreateTeamForm($this->_teamMapper);
+        $joinForm = new JoinTeamForm($this->_teamMapper);
+        $user = $this->_auth->getIdentity();
+        $team = $this->_teamMapper->fetchOneById($user->getTeam());
+        $usersTeam = $this->_userMapper->fetchAllByTeam($user->getTeam());
+
+        // Unsubscription LoL
+        if ($this->_request->getParam('id', false) && $user->getTeam() == $this->_request->getQuery('id')) {
+
+            $user->setTeam(0);
+            $this->_userMapper->save($user);
+            $this->_response->redirect('/account');
+            return false;
+        }
+        if ($this->_request->getParam('starcraft', false) && $user->getTeam() == '0') {
+
+            if ($this->_request->getQuery('starcraft') == 'y')
+                $user->setStarcraft(1);
+            else if ($this->_request->getQuery('starcraft') == 'n')
+                $user->setStarcraft(0);
+            $this->_userMapper->save($user);
+            $this->_response->redirect('/account');
+            return false;
+        }
+
+        if ($this->_request->isPost()) {
+
+            // Create a team
+            if ($this->_request->getParam('submit-create', false) && $user->getTeam() == '0') {
+
+                if ($createForm->isValid($this->_request->getPost())) {
+
+                    $data = $this->_request->getPost();
+                    $team = new Team();
+                    $team->setName($data['name']);
+                    $team->setTag($data['tag']);
+                    $team->setPassword(sha1($data['password']));
+                    $this->_teamMapper->save($team);
+                    $user->setTeam($team->getId());
+                    $this->_userMapper->save($user);
+                    $this->_response->redirect('/account');
+                    return false;
+                }
+            }
+
+            // Join a team
+            if ($this->_request->getParam('submit-join', false) && $user->getTeam() == '0') {
+
+                if ($joinForm->isValid($this->_request->getPost())) {
+
+                    $data = $this->_request->getPost();
+                    $team = $this->_teamMapper->fetchOneByPassword($data['tag'], sha1($data['password']));
+                    $user->setTeam($team->getId());
+                    $this->_userMapper->save($user);
+                    $this->_response->redirect('/account');
+                    return false;
+                }
+            }
+        }
+
+
+        return $this->render([
+            'createForm' => $createForm,
+            'joinForm' => $joinForm,
+            'user' => $user,
+            'team' => $team,
+            'usersTeam' => $usersTeam
+        ]);
     }
 
     public function loginAction() {
 
         $form = new LoginForm();
 
-        if ($this->_request->isPost())
-        {
+        if ($this->_request->isPost()) {
+
             if ($form->isValid($this->_request->getPost())) {
 
                 $username = $form->getElement('username')->getValue();
@@ -84,6 +163,8 @@ class AccountController extends AbstractController {
                 $user->setActive(0);
                 $user->setRegistered(date("Y-m-d H:i:s"));
                 $user->setKey(sha1(date("Y/m/d H:i:s") . $data['email']));
+                $user->setTeam(0);
+                $user->setStarcraft(0);
                 $this->_userMapper->save($user);
                 $this->_response->redirect('/register-success');
                 return false;

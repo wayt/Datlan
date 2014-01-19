@@ -2,23 +2,12 @@
 
 namespace Application\Model;
 
-class User extends \Quokka\Database\AbstractEntity {
+class Team extends \Quokka\Database\AbstractEntity {
 
     private $_id = null;
-    private $_active;
-    private $_key;
-    private $_username;
-    private $_group = 'user';
+    private $_name;
+    private $_tag;
     private $_password;
-    private $_email;
-    private $_lastname;
-    private $_firstname;
-    private $_address;
-    private $_postcode;
-    private $_city;
-    private $_registered;
-    private $_team;
-    private $_starcraft;
 
     public function __call($name, $args) {
 

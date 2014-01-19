@@ -1,25 +1,46 @@
 <article>
     <h1> Bienvenue sur ton compte </h1>
     <section>
+        <?php if ($user->getStarcraft() == 1): ?>
+        <h2>League of legends : non inscrit</h2>
+        <?php elseif($team != false): ?>
+        <h2>League of legends : inscrit <a href="?id=<?= $user->getTeam(); ?>">(Se desinscrire)</a></h2>
+        <h3>Team : <?php echo $team->getName() ?> (<?php echo $team->getTag() ?>)</h3>
+        <ul class="list">
+        <?php foreach($usersTeam as $userTeam): ?>
+        <li><?= $userTeam->getFirstname() . ' "' . $userTeam->getUsername() . '" ' . $userTeam->getLastname() ?></li>
+        <?php endforeach; ?>
+        </ul>
+        <p>Les inscriptions sont pour le moment completement gratuite</p>
+        <?php else: ?>
         <h2>League of legends : non inscrit</h2>
         <div class="w50">
             <h3>Creer une team</h3>
-            <form>
-            <p class="small"><label>Nom </label><input type="text" /></p>
-            <p class="small"><label>Tag </label><input type="text" /></p>
-            <p class="small"><label>Mot de passe </label><input type="text" /></p>
-            <p class="center"><input class="button" type="submit" value="Creer" /></p>
+            <form action="" method="post">
+            <p class="small"><label>Nom </label><?=$createForm->getElement('name')->render(); ?></p>
+            <p class="small"><label>Tag </label><?=$createForm->getElement('tag')->render(); ?></p>
+            <p class="small"><label>Mot de passe </label><?=$createForm->getElement('password')->render(); ?></p>
+            <p class="small"><label>Confirmation </label><?=$createForm->getElement('password2')->render(); ?></p>
+            <p class="center"><input class="button" type="submit" name="submit-create" value="Creer" /></p>
             </form>
         </div>
         <div class="w50">
             <h3>Entrer dans une team</h3>
-            <form>
-            <p class="small"><label>Tag </label><input type="text" /></p>
-            <p class="small"><label>Mot de passe </label><input type="text" /></p>
-            <p class="center"><input class="button" type="submit" value="Rejoindre" /></p>
+            <form action="" method="post">
+            <p class="small"><label>Tag </label><?=$joinForm->getElement('tag')->render(); ?></p>
+            <p class="small"><label>Mot de passe </label><?=$joinForm->getElement('password')->render(); ?></p>
+            <p class="center"><input class="button" type="submit" name="submit-join" value="Rejoindre" /></p>
             </form>
         </div>
+        <?php endif; ?>
         <div style="clear: both;"></div>
+        <?php if ($team != false): ?>
         <h2>Starcraft II : non inscrit</h2>
+        <?php elseif ($user->getStarcraft() == 1): ?>
+        <h2>Starcraft II : inscrit <a href="?starcraft=n">(Se desinscrire)</a></h2>
+        <?php else: ?>
+        <h2>Starcraft II : non inscrit</h2>
+        <p><a href="?starcraft=y">S'inscrire</a></p>
+        <?php endif; ?>
     </section>
 </article>

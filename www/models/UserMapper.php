@@ -20,6 +20,8 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
         $user->setPostcode($data['use_postcode']);
         $user->setCity($data['use_city']);
         $user->setRegistered($data['use_registered']);
+        $user->setTeam($data['use_team']);
+        $user->setStarcraft($data['use_starcraft']);
 
         return $user;
     }
@@ -38,7 +40,9 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
             'use_address' => $user->getAddress(),
             'use_postcode' => $user->getPostcode(),
             'use_city' => $user->getCity(),
-            'use_registered' => $user->getRegistered()
+            'use_registered' => $user->getRegistered(),
+            'use_team' => $user->getTeam(),
+            'use_starcraft' => $user->getStarcraft()
         ];
 
         if ($user->getId() == null) {
@@ -82,5 +86,10 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
     public function fetchOneByUsername($username) {
 
         return $this->fetchOne('SELECT * FROM t_user WHERE use_username = ?', [$username]);
+    }
+
+    public function fetchAllByTeam($team) {
+
+        return $this->fetchAll('SELECT * FROM t_user WHERE use_team = ?', [$team]);
     }
 }

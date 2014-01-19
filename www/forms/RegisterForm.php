@@ -66,10 +66,10 @@ class RegisterForm extends Form\Form {
         if ($this->getElement('password')->getValue() != $this->getElement('password2')->getValue())
             $this->addError('password', "Le mot de passe n'est pas identique.");
 
-        if ($this->_userMapper->fetchOneByEmail($this->getElement('email')->getValue()) === false)
+        if ($this->_userMapper->fetchOneByEmail($this->getElement('email')->getValue()) !== false)
             $this->addError('email', "Le mail a deja ete utilise");
 
-        if ($this->_userMapper->fetchOneByUsername($this->getElement('username')->getValue()) === false)
+        if ($this->_userMapper->fetchOneByUsername($this->getElement('username')->getValue()) !== false)
             $this->addError('username', "Le nom d'utilisateur a deja ete utilise");
 
         return !$this->hasError();

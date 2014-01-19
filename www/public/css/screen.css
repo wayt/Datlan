@@ -162,7 +162,7 @@ input[type=text], input[type=email], input[type=password], textarea {
 .small label {
     width: 120px;
 }
-.small input[type=text] {
+.small input[type=text], .small input[type=password] {
     width: 250px;
 }
 .button {
