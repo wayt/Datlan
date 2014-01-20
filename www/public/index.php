@@ -29,7 +29,7 @@ $application = new Quokka\Mvc\Application();
 /**
 * Db
 */
-$db = new Quokka\Database\PDO('mysql:dbname=' . DB_NAME . ';host:localhost', DB_USER, DB_PSWD);
+$db = new Quokka\Database\PDO('mysql:dbname=' . DB_NAME . ';host:' . DB_HOST . '', DB_USER, DB_PSWD);
 $db->setMapperNamespace('Application\\Model');
 $application->addResource('db', $db);
 
@@ -59,6 +59,7 @@ $application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
 $application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'contactsuccess');
 $application->getRouter()->addRule('k', '/infos$', NULL, 'page', 'infos');
 $application->getRouter()->addRule('l', '/partners$', NULL, 'page', 'partners');
+$application->getRouter()->addRule('m', '/news$', NULL, 'news', 'index');
 
 /**
  * Layout
