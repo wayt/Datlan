@@ -2,6 +2,15 @@
     <h1> Participez a la LAN ! </h1>
     <section>
         <h2>Connectes toi !</h2>
+        <?php if ($form->hasError()): ?>
+        <div class="error">
+        <ul class="list">
+        <?php foreach ($form->getErrors() as $error): ?>
+            <li><?php echo $error; ?></li>
+        <?php endforeach; ?>
+        </ul>
+        </div>
+        <?php endif; ?>
         <form action="" method="post">
             <p><label>Nom d'utilisateur :</label><?= $form->getElement('username')->render() ?></p>
             <p><label>Mot de passe :</label><?= $form->getElement('password')->render() ?></p>
