@@ -1,17 +1,20 @@
 <article>
     <h1> Bienvenue sur ton compte </h1>
     <section>
+	<p>Vous pouvez vous pré-inscrire dans l'un des tournois dès maintenant, cela vous permettra d'avoir la possibilité d'être au courant lors de la phase de paiements par mail.</p>
+	<p>La phase d'inscription (et donc de paiement) sera ouverte d'ici peu.</p>
+    </section>
+    <section>
         <?php if ($user->getStarcraft() == 1): ?>
         <h2>League of legends : non inscrit</h2>
         <?php elseif($team != false): ?>
-        <h2>League of legends : inscrit <a href="?id=<?= $user->getTeam(); ?>">(Se desinscrire)</a></h2>
+        <h2>League of legends : pré-inscrit <a href="?id=<?= $user->getTeam(); ?>">(Se desinscrire)</a></h2>
         <h3>Team : <?php echo $team->getName() ?> (<?php echo $team->getTag() ?>)</h3>
         <ul class="list">
         <?php foreach($usersTeam as $userTeam): ?>
         <li><?= $userTeam->getFirstname() . ' "' . $userTeam->getUsername() . '" ' . $userTeam->getLastname() ?></li>
         <?php endforeach; ?>
         </ul>
-        <p>Les inscriptions sont pour le moment completement gratuite</p>
         <?php else: ?>
         <h2>League of legends : non inscrit</h2>
         <div class="w50">
@@ -37,7 +40,7 @@
         <?php if ($team != false): ?>
         <h2>Starcraft II : non inscrit</h2>
         <?php elseif ($user->getStarcraft() == 1): ?>
-        <h2>Starcraft II : inscrit <a href="?starcraft=n">(Se desinscrire)</a></h2>
+        <h2>Starcraft II : pré-inscrit <a href="?starcraft=n">(Se desinscrire)</a></h2>
         <?php else: ?>
         <h2>Starcraft II : non inscrit</h2>
         <p><a href="?starcraft=y">S'inscrire</a></p>
