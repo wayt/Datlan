@@ -34,7 +34,7 @@ CREATE TABLE `t_team` (
     PRIMARY KEY (`tea_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `t_team`;
+DROP TABLE IF EXISTS `t_news`;
 CREATE TABLE `t_news` (
       `new_id` int(11) NOT NULL AUTO_INCREMENT,
       `new_title` varchar(45) NOT NULL,
