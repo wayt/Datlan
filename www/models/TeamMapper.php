@@ -48,6 +48,16 @@ class TeamMapper extends \Quokka\Database\AbstractMapper {
         return $this->fetchOne('SELECT * FROM t_team WHERE tea_tag = ? AND tea_password = ?', [$tag, $password]);
     }
 
+    public function fetchOneByTag($tag) {
+
+        return $this->fetchOne('SELECT * FROM t_team WHERE tea_tag = ?', [$tag]);
+    }
+
+    public function fetchOneByName($name) {
+
+        return $this->fetchOne('SELECT * FROM t_team WHERE tea_name = ?', [$name]);
+    }
+
     public function removeById($id) {
 
         return $this->execute('DELETE FROM t_team WHERE tea_id = ?', [$id]);

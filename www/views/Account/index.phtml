@@ -19,6 +19,15 @@
         <h2>League of legends : non inscrit</h2>
         <div class="w50">
             <h3>Créer une team</h3>
+            <?php if ($createForm->hasError()): ?>
+            <div class="error">
+            <ul class="list">
+            <?php foreach ($createForm->getErrors() as $error): ?>
+                <li><?php echo $error; ?></li>
+            <?php endforeach; ?>
+            </ul>
+            </div>
+            <?php endif; ?>
             <form action="" method="post">
             <p class="small"><label>Nom </label><?=$createForm->getElement('name')->render(); ?></p>
             <p class="small"><label>Tag </label><?=$createForm->getElement('tag')->render(); ?></p>
@@ -29,6 +38,15 @@
         </div>
         <div class="w50">
             <h3>Entrer dans une team</h3>
+            <?php if ($joinForm->hasError()): ?>
+            <div class="error">
+            <ul class="list">
+            <?php foreach ($joinForm->getErrors() as $error): ?>
+                <li><?php echo $error; ?></li>
+            <?php endforeach; ?>
+            </ul>
+            </div>
+            <?php endif; ?>
             <form action="" method="post">
             <p class="small"><label>Tag </label><?=$joinForm->getElement('tag')->render(); ?></p>
             <p class="small"><label>Mot de passe </label><?=$joinForm->getElement('password')->render(); ?></p>
