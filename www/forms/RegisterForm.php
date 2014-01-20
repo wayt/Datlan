@@ -3,6 +3,7 @@
 namespace Application\Form;
 
 use Quokka\Form;
+use Quokka\Validate;
 
 class RegisterForm extends Form\Form {
 
@@ -34,6 +35,8 @@ class RegisterForm extends Form\Form {
 
         $postcode = new Form\Element\Text('postcode');
         $postcode->setRequired(true);
+        $postcode->addValidate(new Validate\Numeric());
+        $postcode->addValidate(new Validate\StringLength(['min' => 4, 'max' => 6]));
         $postcode->setErrorMessage("Vous n'avez pas specifie de code postal.");
         $this->addElement($postcode);
 
@@ -44,6 +47,7 @@ class RegisterForm extends Form\Form {
 
         $username = new Form\Element\Text('username');
         $username->setRequired(true);
+        $username->addValidate(new Validate\Regex(['regex' => '/^[a-zA-Z0-9_-]{3,16}$/']));
         $username->setErrorMessage("Vous n'avez pas specifie de nom d'utilisateur.");
         $this->addElement($username);
 
@@ -59,6 +63,7 @@ class RegisterForm extends Form\Form {
 
         $born = new Form\Element\Text('born');
         $born->setRequired(true);
+        $born->addValidate(new Validate\Regex(['regex' => '`^\d{1,2}/\d{1,2}/\d{4}$`']));
         $born->setErrorMessage("Vous n'avez pas specifie de date de naissance.");
         $this->addElement($born);
     }

@@ -37,7 +37,7 @@ class AccountController extends AbstractController {
             return false;
         }
 
-        $createForm = new CreateTeamForm($this->_teamMapper);
+        $createForm = new CreateTeamForm($this->_teamMapper, $this->_userMapper);
         $joinForm = new JoinTeamForm($this->_teamMapper);
         $user = $this->_auth->getIdentity();
         $team = $this->_teamMapper->fetchOneById($user->getTeam());
