@@ -15,6 +15,7 @@
             <p><label>E-mail :</label><?= $form->getElement('email')->render() ?></p>
             <p><label>Objet :</label><?= $form->getElement('title')->render() ?></p>
             <p><label>Message :</label><?= $form->getElement('body')->render() ?></p>
+            <p><label>Captcha :</label><?php echo recaptcha_get_html(CAPTCHA_PUBLIC_KEY, null); ?></p>
             <p class="center"><input class="button" type="submit" value="Envoyer le message" /></p>
         </form>
     </section>

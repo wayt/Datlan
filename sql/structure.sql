@@ -33,3 +33,14 @@ CREATE TABLE `t_team` (
     `tea_password` char(64) NOT NULL,
     PRIMARY KEY (`tea_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `t_team`;
+CREATE TABLE `t_news` (
+      `new_id` int(11) NOT NULL AUTO_INCREMENT,
+      `new_title` varchar(45) NOT NULL,
+      `new_content` text NOT NULL,
+      `new_date` datetime NOT NULL,
+      `new_by` varchar(45) NOT NULL,
+      PRIMARY KEY (`new_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
