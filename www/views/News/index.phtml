@@ -5,7 +5,7 @@
         <section>
         <h2 style='float:left'><?php echo $new->getTitle(); ?></h2>
         <div style='float:right;margin-top:25px'><?php echo 'Le '.$new->getDate().' par '.$new->getBy(); ?></div>
-        <div style='clear:both;text-align:justify'><?php echo nl2br($new->getContent()); ?></div>
+        <div style='clear:both;text-align:justify'><?php echo $new->getContent(); ?></div>
         </section>
         <?php endforeach; ?>
     <?php else: ?>
