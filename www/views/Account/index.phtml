@@ -12,7 +12,7 @@
         <h3>Team : <?php echo $team->getName() ?> (<?php echo $team->getTag() ?>)</h3>
         <ul class="list">
         <?php foreach($usersTeam as $userTeam): ?>
-        <li><?= $userTeam->getFirstname() . ' "' . $userTeam->getUsername() . '" ' . $userTeam->getLastname() ?></li>
+        <li><?= htmlentities($userTeam->getFirstname()) . ' "' . htmlentities($userTeam->getUsername()) . '" ' . htmlentities($userTeam->getLastname()) ?></li>
         <?php endforeach; ?>
         </ul>
         <?php else: ?>
