@@ -4,3 +4,5 @@ define('DB_USER',               'root');
 define('DB_PSWD',               '');
 define('DB_NAME',               'datlan');
 define('DB_HOST',               'localhost');
+define('CAPTCHA_PUBLIC_KEY',    '');
+define('CAPTCHA_PRIVATE_KEY',   '');

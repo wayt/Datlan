@@ -9,6 +9,7 @@ set_include_path(
 
 require_once '../config.php';
 require_once 'Quokka/Loader/Autoloader.php';
+require_once 'recaptchalib.php';
 
 /**
  * Autoloading
