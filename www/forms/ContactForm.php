@@ -29,6 +29,8 @@ class ContactForm extends Form\Form {
             if (!$resp->is_valid)
                 $this->addError('Captcha', 'Captcha invalide');
         }
+        else
+            $this->addError('Captcha', 'Captcha invalide');
 
         return !$this->hasError();
     }
