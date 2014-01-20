@@ -82,6 +82,16 @@ class RegisterForm extends Form\Form {
         if ($this->_userMapper->fetchOneByUsername($this->getElement('username')->getValue()) !== false)
             $this->addError('username', "Le nom d'utilisateur a deja ete utilise");
 
+        if ($data["recaptcha_response_field"]) {
+            $resp = recaptcha_check_answer (CAPTCHA_PRIVATE_KEY,
+                $_SERVER["REMOTE_ADDR"],
+                $data["recaptcha_challenge_field"],
+                $data["recaptcha_response_field"]);
+
+            if (!$resp->is_valid)
+                $this->addError('Captcha', 'Captcha invalide');
+        }
+
         return !$this->hasError();
     }
 }

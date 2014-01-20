@@ -24,6 +24,7 @@
             <p><label>Nom d'utilisateur :</label><?= $form->getElement('username')->render() ?></p>
             <p><label>Mot de passe :</label><?= $form->getElement('password')->render() ?></p>
             <p><label>Confirmation du mot de passe :</label><?= $form->getElement('password2')->render() ?></p>
+            <p><label>Captcha :</label><?php echo recaptcha_get_html(CAPTCHA_PUBLIC_KEY, null); ?></p>
             <p class="center"><input class="button" type="submit" value="S'inscrire !" /></p>
         </form>
     </section>

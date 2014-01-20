@@ -26,11 +26,10 @@ class ContactForm extends Form\Form {
                 $post["recaptcha_challenge_field"],
                 $post["recaptcha_response_field"]);
 
-            if (!$resp->is_valid) {
+            if (!$resp->is_valid)
                 $this->addError('Captcha', 'Captcha invalide');
-                return false;
-            }
         }
-        return true;
+
+        return !$this->hasError();
     }
 }
