@@ -34,7 +34,7 @@ class JoinTeamForm extends Form\Form {
 
         if ($team === false)
             $this->addError('join', "Impossible de rejoindre la team");
-        if ($team !== false && $this->_userMapper->countByTeam($team->getId()) == 5)
+        if ($team !== false && $this->_userMapper->countInTeam($team->getId()) == 5)
             $this->addError('join', "La team est complete !");
 
         return !$this->hasError();
