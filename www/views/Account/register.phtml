@@ -14,7 +14,8 @@
         <form action="" method="post">
             <h3>Informations personnelles</h3>
             <p><label>Nom :</label><?= $form->getElement('lastname')->render() ?></p>
-            <p><label>Prenom :</label><?= $form->getElement('firstname')->render() ?></p>
+            <p><label>Prénom :</label><?= $form->getElement('firstname')->render() ?></p>
+            <p><label>Birthday (JJ/MM/AAAA) :</label><?= $form->getElement('born')->render() ?></p>
             <p><label>Adresse :</label><?= $form->getElement('address')->render() ?></p>
             <p><label>Ville :</label><?= $form->getElement('city')->render() ?></p>
             <p><label>Code postal :</label><?= $form->getElement('postcode')->render() ?></p>

@@ -19,6 +19,7 @@ class User extends \Quokka\Database\AbstractEntity {
     private $_registered;
     private $_team;
     private $_starcraft;
+    private $_born;
 
     public function __call($name, $args) {
 

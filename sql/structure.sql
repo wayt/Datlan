@@ -18,6 +18,7 @@ CREATE TABLE `t_user` (
     `use_registered` DATETIME NOT NULL,
     `use_team` INTEGER NOT NULL DEFAULT 0,
     `use_starcraft` INTEGER NOT NULL DEFAULT 0,
+    `use_born` VARCHAR(50) NOT NULL,
     PRIMARY KEY (`use_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

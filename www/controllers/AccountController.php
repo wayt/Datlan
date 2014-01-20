@@ -48,6 +48,9 @@ class AccountController extends AbstractController {
 
             $user->setTeam(0);
             $this->_userMapper->save($user);
+            if ($this->_userMapper->countInTeam($this->_request->getQuery('id')) == 0)
+                $this->_teamMapper->removeById($this->_request->getQuery('id'));
+
             $this->_response->redirect('/account');
             return false;
         }
@@ -90,10 +93,13 @@ class AccountController extends AbstractController {
 
                     $data = $this->_request->getPost();
                     $team = $this->_teamMapper->fetchOneByPassword($data['tag'], sha1($data['password']));
-                    $user->setTeam($team->getId());
-                    $this->_userMapper->save($user);
-                    $this->_response->redirect('/account');
-                    return false;
+                    if ($this->_userMapper->countInTeam($team->getId()) < 5) {
+
+                        $user->setTeam($team->getId());
+                        $this->_userMapper->save($user);
+                        $this->_response->redirect('/account');
+                        return false;
+                    }
                 }
             }
         }
@@ -165,6 +171,7 @@ class AccountController extends AbstractController {
                 $user->setKey(sha1(date("Y/m/d H:i:s") . $user->getEmail()));
                 $user->setTeam(0);
                 $user->setStarcraft(0);
+                $user->setBorn($form->getElement('born')->getValue());
                 $this->_userMapper->save($user);
 
                 $headers = 'From: no-reply@datlan.eu' . "\r\n" .

@@ -56,6 +56,11 @@ class RegisterForm extends Form\Form {
         $password2->setRequired(true);
         $password2->setErrorMessage("Vous n'avez pas specifie de confirmation de mot de passe.");
         $this->addElement($password2);
+
+        $born = new Form\Element\Text('born');
+        $born->setRequired(true);
+        $born->setErrorMessage("Vous n'avez pas specifie de date de naissance.");
+        $this->addElement($born);
     }
 
     public function isValid($data) {

@@ -22,6 +22,7 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
         $user->setRegistered($data['use_registered']);
         $user->setTeam($data['use_team']);
         $user->setStarcraft($data['use_starcraft']);
+        $user->setBorn($data['use_born']);
 
         return $user;
     }
@@ -42,7 +43,8 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
             'use_city' => $user->getCity(),
             'use_registered' => $user->getRegistered(),
             'use_team' => $user->getTeam(),
-            'use_starcraft' => $user->getStarcraft()
+            'use_starcraft' => $user->getStarcraft(),
+            'use_born' => $user->getBorn()
         ];
 
         if ($user->getId() == null) {
@@ -91,5 +93,12 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
     public function fetchAllByTeam($team) {
 
         return $this->fetchAll('SELECT * FROM t_user WHERE use_team = ?', [$team]);
+    }
+
+    public function countInTeam($team) {
+
+        $query = $this->getPDO()->prepare('SELECT COUNT(*) FROM t_user WHERE use_team = ?');
+        $query->execute([$team]);
+        return $query->fetchColumn();
     }
 }
