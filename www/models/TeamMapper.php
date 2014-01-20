@@ -11,6 +11,7 @@ class TeamMapper extends \Quokka\Database\AbstractMapper {
         $team->setName($data['tea_name']);
         $team->setTag($data['tea_tag']);
         $team->setPassword($data['tea_password']);
+        $team->setCreator($data['tea_creator']);
 
         return $team;
     }
@@ -21,6 +22,7 @@ class TeamMapper extends \Quokka\Database\AbstractMapper {
             'tea_name' => $team->getName(),
             'tea_tag' => $team->getTag(),
             'tea_password' => $team->getPassword(),
+            'tea_creator' => $team->getCreator()
         ];
 
         if ($team->getId() == null) {

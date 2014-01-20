@@ -78,6 +78,7 @@ class AccountController extends AbstractController {
                     $team->setName($data['name']);
                     $team->setTag($data['tag']);
                     $team->setPassword(sha1($data['password']));
+                    $team->setCreator($user->getId());
                     $this->_teamMapper->save($team);
                     $user->setTeam($team->getId());
                     $this->_userMapper->save($user);

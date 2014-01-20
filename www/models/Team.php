@@ -8,6 +8,7 @@ class Team extends \Quokka\Database\AbstractEntity {
     private $_name;
     private $_tag;
     private $_password;
+    private $_creator;
 
     public function __call($name, $args) {
 

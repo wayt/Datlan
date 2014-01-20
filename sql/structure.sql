@@ -31,6 +31,7 @@ CREATE TABLE `t_team` (
     `tea_name` VARCHAR(100) NOT NULL,
     `tea_tag` VARCHAR(50) NOT NULL,
     `tea_password` char(64) NOT NULL,
+    `tea_creator` INT(11) NOT NULL DEFAULT '0',
     PRIMARY KEY (`tea_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
