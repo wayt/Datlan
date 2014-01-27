@@ -82,6 +82,16 @@ class RegisterForm extends Form\Form {
         if ($this->_userMapper->fetchOneByUsername($this->getElement('username')->getValue()) !== false)
             $this->addError('username', "Le nom d'utilisateur a deja ete utilise");
 
+        // Blockage email
+        if (strlen(EMAIL_BLACKLIST) > 0) {
+
+            $providers = explode(' ', EMAIL_BLACKLIST);
+            foreach ($providers as $prov) {
+                if (preg_match("#^[\w.-]+@" . $prov . "#", $this->getElement('email')->getValue()))
+                    $this->addError('email', 'Merci de ne pas utiliser une adresse de type ' . $prov . '.');
+            }
+        }
+
         if ($data["recaptcha_response_field"]) {
             $resp = recaptcha_check_answer (CAPTCHA_PRIVATE_KEY,
                 $_SERVER["REMOTE_ADDR"],
