@@ -70,4 +70,9 @@ class PageController extends AbstractController {
 
         return $this->render();
     }
+
+    public function confidentialityAction() {
+
+        return $this->render();
+    }
 }

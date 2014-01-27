@@ -61,6 +61,7 @@ $application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'cont
 $application->getRouter()->addRule('k', '/infos$', NULL, 'page', 'infos');
 $application->getRouter()->addRule('l', '/partners$', NULL, 'page', 'partners');
 $application->getRouter()->addRule('m', '/news$', NULL, 'news', 'index');
+$application->getRouter()->addRule('n', '/confidentiality$', NULL, 'page', 'confidentiality');
 
 /**
  * Layout
