@@ -49,7 +49,7 @@ class PageController extends AbstractController {
                            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
                            'X-Mailer: PHP/' . phpversion();
 
-                mail('fabien.casters@epitech.eu', 'Un message du site de Datlan',
+                mail('contact@datlan.eu', 'Un message du site de Datlan',
                     "<p>Email :" .$form->getElement('email')->getValue() . "</p>" .
                     "<p>Firstname :" .$form->getElement('firstname')->getValue() . "</p>" .
                     "<p>Lastname :" .$form->getElement('lastname')->getValue() . "</p>" .
