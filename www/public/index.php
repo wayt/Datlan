@@ -59,6 +59,7 @@ $application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
 $application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'contactsuccess');
 $application->getRouter()->addRule('k', '/infos$', NULL, 'page', 'infos');
 $application->getRouter()->addRule('p', '/partners$', NULL, 'page', 'partners');
+$application->getRouter()->addRule('q', '/mentionslegales$', NULL, 'page', 'mentionslegales');
 $application->getRouter()->addRule('o', '/leagueoflegend$', NULL, 'tourney', 'leagueoflegend');
 $application->getRouter()->addRule('s', '/starcraft2$', NULL, 'tourney', 'starcraft2');
 $application->getRouter()->addRule('m', '/news$', NULL, 'news', 'index');
