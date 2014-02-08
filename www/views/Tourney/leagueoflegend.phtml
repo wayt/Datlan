@@ -26,6 +26,14 @@
     <?php if ($registeredTeams > 0): ?>
     <section>
         <h2>Equipes pré-inscrites :</h2>
+        <p>
+            <table width="100%">
+            <?php foreach($registeredTeamsList as $team) { ?>
+                <tr><td width="5%"></td><td><b><?php echo $team['name']?></b></td></tr>
+                <tr><td width="10%"></td><td><?php foreach ($team['players'] as $player) { echo $player->getUserName()." " ) ?></td></tr>
+           <?php } ?>
+            </table>
+        </p>
         <div>
         </div>
     </section>

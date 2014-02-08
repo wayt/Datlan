@@ -26,9 +26,20 @@ class TourneyController extends AbstractController {
     public function leagueoflegendAction() {
 
         $registeredTeams = $this->_teamMapper->countTeams();
+        $registeredTeamsList = array()
+        $teamsList = $this->_teamMapper->fetchAllTeams();
+        foreach ($teamsList as $team) {
+            $players = $this->_userMapper->fetchAllByTeam($team->getId());
+            registeredPlayersList[] = array(
+                "name"  =>  $team->getName(),
+                "players"   => $players
+            );
+        }
+        $validatedTeams = 0;
         return $this->render([
             'registeredTeams' => $registeredTeams,
-            'validatedTeams' => 0
+            'registeredTeamsList' => $registeredTeamsList,
+            'validatedTeams' => $validatedTeams
         ]);
     }
 
@@ -36,11 +47,11 @@ class TourneyController extends AbstractController {
 
         $registeredPlayers = $this->_userMapper->countInStarcarft2Tournament();
         $registeredPlayersList = $this->_userMapper->fetchAllByStarcraft2Tournament();
+        $validatedPlayers = 0;
         return $this->render([
             'registeredPlayers' => $registeredPlayers,
             'registeredPlayersList' => $registeredPlayersList,
-
-            'validatedPlayers' => 0
+            'validatedPlayers' => $validatedPlayers
         ]);
     }
 }

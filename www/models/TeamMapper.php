@@ -71,4 +71,8 @@ class TeamMapper extends \Quokka\Database\AbstractMapper {
         $query->execute();
         return $query->fetchColumn();    
     }
+
+    public function fetchAllTeam() {
+        return $this->fetchAll('SELECT * FROM t_team');
+    }
 }
