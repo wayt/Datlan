@@ -23,17 +23,20 @@ class PageController extends AbstractController {
 
     public function leagueoflegendAction() {
 
-        $registeredTeams = this->_teamMapper->countTeams();
-        return $this->render([
-            'registeredTeams' => $registeredTeams
-        ]);
+        #$registeredTeams = this->_teamMapper->countTeams();
+        #return $this->render([
+        #    'registeredTeams' => $registeredTeams
+        #]);
+        return $this->render();
     }
 
     public function starcraft2Action() {
 
-        $registeredPlayers = this->_userMapper->countInStarcarft2Tournament();
-        return $this->render([
-            'registeredPlayers' => $registeredPlayers
-        ]);
+        #$registeredPlayers = this->_userMapper->countInStarcarft2Tournament();
+        #return $this->render([
+        #    'registeredPlayers' => $registeredPlayers
+        #]);
+        return $this->render();
+
     }
 }
