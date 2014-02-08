@@ -25,20 +25,17 @@ class TourneyController extends AbstractController {
 
     public function leagueoflegendAction() {
 
-        #$registeredTeams = this->_teamMapper->countTeams();
-        #return $this->render([
-        #    'registeredTeams' => $registeredTeams
-        #]);
-        return $this->render();
+        $registeredTeams = this->_teamMapper->countTeams();
+        return $this->render([
+            'registeredTeams' => $registeredTeams
+        ]);
     }
 
     public function starcraft2Action() {
 
-        #$registeredPlayers = this->_userMapper->countInStarcarft2Tournament();
-        #return $this->render([
-        #    'registeredPlayers' => $registeredPlayers
-        #]);
-        return $this->render();
-
+        $registeredPlayers = this->_userMapper->countInStarcarft2Tournament();
+        return $this->render([
+            'registeredPlayers' => $registeredPlayers
+        ]);
     }
 }
