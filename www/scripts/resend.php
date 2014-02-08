@@ -42,7 +42,7 @@ if ($user == false) {
 }
 else if ($user->getActive() == 1) {
 
-    echo "Le compte est deja active connard !\n";
+    echo "Le compte est deja active ! Merci de vous connecter avec votre propre login sur le site web.\n";
     exit();
 }
 else {
