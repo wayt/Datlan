@@ -49,7 +49,6 @@ $application->addPlugin(new Application\Plugin\AuthPlugin());
  * Routing
  */
 $application->getRouter()->addRule('a', '/$', NULL, 'page', 'index');
-$application->getRouter()->addRule('b', '/stands$', NULL, 'page', 'stands');
 $application->getRouter()->addRule('c', '/contact$', NULL, 'page', 'contact');
 $application->getRouter()->addRule('d', '/login$', NULL, 'account', 'login');
 $application->getRouter()->addRule('e', '/logout$', NULL, 'account', 'logout');
@@ -60,6 +59,8 @@ $application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
 $application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'contactsuccess');
 $application->getRouter()->addRule('k', '/infos$', NULL, 'page', 'infos');
 $application->getRouter()->addRule('l', '/partners$', NULL, 'page', 'partners');
+$application->getRouter()->addRule('l', '/leagueoflegend$', NULL, 'page', 'leagueoflegend');
+$application->getRouter()->addRule('l', '/starcraft2$', NULL, 'page', 'starcraft2');
 $application->getRouter()->addRule('m', '/news$', NULL, 'news', 'index');
 $application->getRouter()->addRule('n', '/confidentiality$', NULL, 'page', 'confidentiality');
 
