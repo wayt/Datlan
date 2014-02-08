@@ -8,7 +8,7 @@ use \Application\Model\UserMapper;
 use \Application\Model\Team;
 use \Application\Model\TeamMapper;
 
-class PageController extends AbstractController {
+class TourneyController extends AbstractController {
 
     private $_request;
     private $_response;
