@@ -27,9 +27,9 @@ class TourneyController extends AbstractController {
 
         $registeredTeams = $this->_teamMapper->countTeams();
         $registeredTeamsList = array()
-        $teamsList = $this->_teamMapper->fetchAllTeams();
-        var_dump($teamsList);
-        foreach ($teamsList as $team) {
+        $teamsofList = $this->_teamMapper->fetchAllTeams();
+        var_dump($teamsofList);
+        foreach ($teamsofList as $team) {
             $players = $this->_userMapper->fetchAllByTeam($team->getId());
             registeredPlayersList[] = array(
                 "name"  =>  $team->getName(),
