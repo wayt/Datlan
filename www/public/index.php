@@ -58,9 +58,9 @@ $application->getRouter()->addRule('h', '/activate-account$', NULL, 'account', '
 $application->getRouter()->addRule('i', '/account$', NULL, 'account', 'index');
 $application->getRouter()->addRule('j', '/contact-success$', NULL, 'page', 'contactsuccess');
 $application->getRouter()->addRule('k', '/infos$', NULL, 'page', 'infos');
-$application->getRouter()->addRule('l', '/partners$', NULL, 'page', 'partners');
-$application->getRouter()->addRule('l', '/leagueoflegend$', NULL, 'page', 'leagueoflegend');
-$application->getRouter()->addRule('l', '/starcraft2$', NULL, 'page', 'starcraft2');
+$application->getRouter()->addRule('p', '/partners$', NULL, 'page', 'partners');
+$application->getRouter()->addRule('o', '/leagueoflegend$', NULL, 'page', 'leagueoflegend');
+$application->getRouter()->addRule('s', '/starcraft2$', NULL, 'page', 'starcraft2');
 $application->getRouter()->addRule('m', '/news$', NULL, 'news', 'index');
 $application->getRouter()->addRule('n', '/confidentiality$', NULL, 'page', 'confidentiality');
 
