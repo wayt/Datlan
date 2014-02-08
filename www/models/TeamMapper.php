@@ -67,7 +67,7 @@ class TeamMapper extends \Quokka\Database\AbstractMapper {
 
     public function countTeams() {
 
-        $query = $this->getPDO()->prepare('SELECT COUNT(id) FROM t_team');
+        $query = $this->getPDO()->prepare('SELECT COUNT(*) FROM t_team');
         $query->execute();
         return $query->fetchColumn();    
     }
