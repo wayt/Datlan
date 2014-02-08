@@ -20,7 +20,6 @@
     <?php if ($validedTeams > 0): ?>
     <section>
         <h2>Equipes validées :</h2>
-        <div></div>
     </section>
     <?php endif; ?>
     <?php if ($registeredTeams > 0): ?>
@@ -29,8 +28,8 @@
         <p>
             <table width="100%">
             <?php foreach($registeredTeamsList as $team) { ?>
-                <tr><td width="5%"></td><td><b><?php echo $team['name']?></b></td></tr>
-                <tr><td width="10%"></td><td><?php foreach ($team['players'] as $player) { echo $player->getUserName()." "; } ?></td></tr>
+                <tr><td><b><?php echo $team['name']?></b></td></tr>
+                <tr><td width="5%"></td><td><?php foreach ($team['players'] as $player) { echo $player->getUserName()." "; } ?></td></tr>
            <?php } ?>
             </table>
         </p>
