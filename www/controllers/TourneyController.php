@@ -27,7 +27,8 @@ class TourneyController extends AbstractController {
 
         $registeredTeams = $this->_teamMapper->countTeams();
         return $this->render([
-            'registeredTeams' => $registeredTeams
+            'registeredTeams' => $registeredTeams,
+            'validatedTeams' => 0
         ]);
     }
 
@@ -35,7 +36,8 @@ class TourneyController extends AbstractController {
 
         $registeredPlayers = $this->_userMapper->countInStarcarft2Tournament();
         return $this->render([
-            'registeredPlayers' => $registeredPlayers
+            'registeredPlayers' => $registeredPlayers,
+            'validatedPlayers' => 0
         ]);
     }
 }
