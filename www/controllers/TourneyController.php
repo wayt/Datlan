@@ -35,8 +35,11 @@ class TourneyController extends AbstractController {
     public function starcraft2Action() {
 
         $registeredPlayers = $this->_userMapper->countInStarcarft2Tournament();
+        $registeredPlayersList = $this->_userMapper->fetchAllByStarcraft2Tournament();
         return $this->render([
             'registeredPlayers' => $registeredPlayers,
+            'registeredPlayersList' => $registeredPlayersList,
+
             'validatedPlayers' => 0
         ]);
     }
