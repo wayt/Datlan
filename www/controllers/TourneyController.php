@@ -3,7 +3,9 @@
 namespace Application\Controller;
 
 use \Quokka\Mvc\Controller\AbstractController;
+use \Application\Model\User;
 use \Application\Model\UserMapper;
+use \Application\Model\Team;
 use \Application\Model\TeamMapper;
 
 class PageController extends AbstractController {
