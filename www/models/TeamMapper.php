@@ -64,4 +64,11 @@ class TeamMapper extends \Quokka\Database\AbstractMapper {
 
         return $this->execute('DELETE FROM t_team WHERE tea_id = ?', [$id]);
     }
+
+    public function countTeams() {
+
+        $query = $this->getPDO()->prepare('SELECT COUNT(id) FROM t_team');
+        $query->execute();
+        return $query->fetchColumn();    
+    }
 }

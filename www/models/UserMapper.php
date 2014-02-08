@@ -101,4 +101,11 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
         $query->execute([$team]);
         return $query->fetchColumn();
     }
+
+    public function countInStarcarft2Tournament() {
+
+        $query = $this->getPDO()->prepare('SELECT COUNT(id) FROM t_user WHERE use_starcraft = 1');
+        $query->execute();
+        return $query->fetchColumn();
+    }
 }
