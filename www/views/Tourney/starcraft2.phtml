@@ -29,7 +29,7 @@
         <p>
             <table width="100%">
             <?php foreach($registeredPlayersList as $value) { ?>
-                <tr><td><?php echo $value ?></td></tr>
+                <tr><td><?php echo $value->getUsername() ?></td></tr>
            <?php } ?>
             </table>
         </p>
