@@ -26,10 +26,9 @@ class TourneyController extends AbstractController {
     public function leagueoflegendAction() {
 
         $registeredTeams = $this->_teamMapper->countTeams();
-        $registeredTeamsList = array()
-        $teamsofList = $this->_teamMapper->fetchAllTeams();
-        var_dump($teamsofList);
-        foreach ($teamsofList as $team) {
+        $registeredTeamsList = array();
+        $registeredTeamsListTemp = $this->_teamMapper->fetchAllTeams();
+        foreach ($registeredTeamsListTemp as $team) {
             $players = $this->_userMapper->fetchAllByTeam($team->getId());
             registeredPlayersList[] = array(
                 "name"  =>  $team->getName(),
