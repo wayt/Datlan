@@ -36,6 +36,11 @@ class PageController extends AbstractController {
         return $this->render();
     }
 
+    public function mentionslegalesAction() {
+
+        return $this->render();
+    }
+
     public function contactAction() {
 
         $form = new ContactForm();
