@@ -35,11 +35,11 @@ class TourneyController extends AbstractController {
                 "players"   => $players
             );
         }
-        $validatedTeams = 0;
+        $validedTeams = 0;
         return $this->render([
             'registeredTeams' => $registeredTeams,
             'registeredTeamsList' => $registeredTeamsList,
-            'validatedTeams' => $validatedTeams
+            'validedTeams' => $validedTeams
         ]);
     }
 
@@ -47,11 +47,11 @@ class TourneyController extends AbstractController {
 
         $registeredPlayers = $this->_userMapper->countInStarcarft2Tournament();
         $registeredPlayersList = $this->_userMapper->fetchAllByStarcraft2Tournament();
-        $validatedPlayers = 0;
+        $validedPlayers = 0;
         return $this->render([
             'registeredPlayers' => $registeredPlayers,
             'registeredPlayersList' => $registeredPlayersList,
-            'validatedPlayers' => $validatedPlayers
+            'validedPlayers' => $validedPlayers
         ]);
     }
 }
