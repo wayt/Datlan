@@ -96,7 +96,7 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
     }
 
     public function fetchAllByStarcraft2Tournament() {
-        return $this->fetchAll('SELECT use_username FROM t_user WHERE use_starcraft = 1');
+        return $this->fetchAll('SELECT * FROM t_user WHERE use_starcraft = 1');
     }
 
     public function countInTeam($team) {
