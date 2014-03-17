@@ -3,19 +3,29 @@
     <section>
 	<p>Vous pouvez vous pré-inscrire dans l'un des tournois dès maintenant, cela vous permettra d'avoir la possibilité d'être au courant lors de la phase de paiements par mail.</p>
 	<p>La phase d'inscription (et donc de paiement) sera ouverte d'ici peu.</p>
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="LKAWZB6QNFBNN">
-        <input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
-        <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-    </form>
+	<?php if ($user->getPayment() == 0): ?>
+	    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="6YGBC3STYHMZ2">
+		<input name="custom" type="hidden" value="<?=$user->getId() ?>" />
+		<input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+		<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+	    </form>
+	<?php endif; ?>
     </section>
     <section>
         <?php if ($user->getStarcraft() == 1): ?>
         <h2>League of legends : non inscrit</h2>
         <?php elseif($team != false): ?>
         <h2>League of legends : pré-inscrit <a href="?id=<?= $user->getTeam(); ?>">(Se desinscrire)</a></h2>
-        <h3>Team : <?php echo $team->getName() ?> (<?php echo $team->getTag() ?>)</h3>
+	<?php
+	$payment = 0;
+	foreach ($usersTeam as $userTeam) {
+		if ($userTeam->getPayment() != 0)
+			$payment++;
+	}
+	?>
+        <h3>Team : <?php echo $team->getName() ?> (<?php echo $team->getTag() ?>) - <?php echo $payment; ?> / 5</h3>
         <ul class="list">
         <?php foreach($usersTeam as $userTeam): ?>
         <li><?= htmlentities($userTeam->getFirstname()) . ' "' . htmlentities($userTeam->getUsername()) . '" ' . htmlentities($userTeam->getLastname()) ?></li>

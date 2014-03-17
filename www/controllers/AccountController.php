@@ -173,6 +173,7 @@ class AccountController extends AbstractController {
                 $user->setTeam(0);
                 $user->setStarcraft(0);
                 $user->setBorn($form->getElement('born')->getValue());
+                $user->setPayment(0);
                 $this->_userMapper->save($user);
 
                 $headers = 'From: no-reply@datlan.eu' . "\r\n" .
