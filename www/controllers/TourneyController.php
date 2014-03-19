@@ -28,18 +28,25 @@ class TourneyController extends AbstractController {
         $registeredTeams = $this->_teamMapper->countTeams();
         $registeredTeamsList = array();
         $registeredTeamsListTemp = $this->_teamMapper->fetchAllTeams();
+        $confirmed = 0;
         foreach ($registeredTeamsListTemp as $team) {
+            $o = 0;
             $players = $this->_userMapper->fetchAllByTeam($team->getId());
+	    foreach($players as $player) {
+                if ($player->getPayment() == 1)
+                    $o++;
+            }
+            if ($o == 5)
+                $confirmed++;
             $registeredTeamsList[] = array(
                 "name"  =>  $team->getName(),
                 "players"   => $players
             );
         }
-        $validedTeams = 0;
         return $this->render([
             'registeredTeams' => $registeredTeams,
             'registeredTeamsList' => $registeredTeamsList,
-            'validedTeams' => $validedTeams
+            'validedTeams' => $confirmed
         ]);
     }
 
@@ -48,6 +55,10 @@ class TourneyController extends AbstractController {
         $registeredPlayers = $this->_userMapper->countInStarcarft2Tournament();
         $registeredPlayersList = $this->_userMapper->fetchAllByStarcraft2Tournament();
         $validedPlayers = 0;
+        foreach ($registeredPlayersList as $player) {
+            if ($player->getPayment() == 1)
+                $validedPlayers++;
+        }
         return $this->render([
             'registeredPlayers' => $registeredPlayers,
             'registeredPlayersList' => $registeredPlayersList,
