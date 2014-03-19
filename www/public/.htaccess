@@ -1,5 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^datlan.eu$ [NC]
+    RewriteRule (.*) http://www.datlan.eu/$1 [QSA,R=301,L]
     RewriteCond %{REQUEST_FILENAME} -s [OR]
     RewriteCond %{REQUEST_FILENAME} -l [OR]
     RewriteCond %{REQUEST_FILENAME} -d
