@@ -9,7 +9,7 @@
             <table width="100%">
                 <tr><td>Joueurs maximum</td><td align="right">24</td></tr>
                 <tr><td><b>Joueurs validés</b></td><td align="right"><?php echo $validedPlayers ?></td></tr>
-                <tr><td>Joueurs pré-inscrits</td><td align="right"><?php echo $registeredPlayers ?></td></tr>
+                <tr><td>Joueurs pré-inscrits</td><td align="right"><?php echo $registeredPlayers - $validedPlayers ?></td></tr>
                 <tr><td>&nbsp;<td></tr>
                 <tr><td><b>Reglement du tournoi</b></td><td align="right">Soon</td></tr>
                 <tr><td><b>Planning du tournoi</b></td><td align="right"><a href="files/planning/planning-sc2.pdf">Lien</a></td></tr>
@@ -20,7 +20,13 @@
     <?php if ($validedPlayers > 0): ?>
     <section>
         <h2>Joueurs validés :</h2>
-        <div></div>
+            <table width="100%">
+            <?php foreach($registeredPlayersList as $value) { ?>
+		<?php if($value->getPayment() == 1): ?>
+                <tr><td width="5%"></td><td><?php echo '<span class="' . (($value->getPayment() == 1) ? 'green' : 'red') . '">' .  $value->getUsername() ?></td></tr>
+                <?php endif; ?>
+           <?php } ?>
+            </table>
     </section>
     <?php endif; ?>
     <?php if ($registeredPlayers > 0): ?>
@@ -29,7 +35,9 @@
         <p>
             <table width="100%">
             <?php foreach($registeredPlayersList as $value) { ?>
-                <tr><td width="5%"></td><td><?php echo $value->getUsername() ?></td></tr>
+		<?php if($value->getPayment() == 0): ?>
+                <tr><td width="5%"></td><td><?php echo '<span class="' . (($value->getPayment() == 1) ? 'green' : 'red') . '">' .  $value->getUsername() ?></td></tr>
+                <?php endif; ?>
            <?php } ?>
             </table>
         </p>

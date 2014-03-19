@@ -64,6 +64,8 @@ $application->getRouter()->addRule('o', '/leagueoflegend$', NULL, 'tourney', 'le
 $application->getRouter()->addRule('s', '/starcraft2$', NULL, 'tourney', 'starcraft2');
 $application->getRouter()->addRule('m', '/news$', NULL, 'news', 'index');
 $application->getRouter()->addRule('n', '/confidentiality$', NULL, 'page', 'confidentiality');
+$application->getRouter()->addRule('z', '/notify$', NULL, 'payment', 'notify');
+$application->getRouter()->addRule('x', '/success$', NULL, 'payment', 'success');
 
 /**
  * Layout

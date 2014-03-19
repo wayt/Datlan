@@ -1,5 +1,5 @@
 <article>
-    <h1>League of Legend</h1>
+    <h1>League of Legends</h1>
     <section>
          <div class="w50">
             <div class="game" style="background:url('images/game/lol.jpg')"><p>&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;</p></div>
@@ -9,7 +9,7 @@
             <table width="100%">
                 <tr><td>Équipes maximum</b></td><td align="right">24</td></tr>
                 <tr><td><b>Équipes validées</b></td><td align="right"><?php echo $validedTeams ?></td></tr>
-                <tr><td>Équipes pré-inscrites</td><td align="right"><?php echo $registeredTeams ?></td></tr>
+                <tr><td>Équipes pré-inscrites</td><td align="right"><?php echo $registeredTeams - $validedTeams ?></td></tr>
                 <tr><td>&nbsp;<td></tr>
                 <tr><td><b>Reglement du tournoi</b></td><td align="right"><a href="files/reglement/Annexe_LoL_2013-2014_version1.0.pdf">Lien</a></td></tr>
                 <tr><td><b>Planning du tournoi</b></td><td align="right"><a href="files/planning/planning-lol.pdf">Lien</a></td></tr>
@@ -17,24 +17,17 @@
             </p>
         </div>
     </section>
-    <?php if ($validedTeams > 0): ?>
-    <section>
-        <h2>Equipes validées :</h2>
-    </section>
-    <?php endif; ?>
     <?php if ($registeredTeams > 0): ?>
     <section>
-        <h2>Equipes pré-inscrites :</h2>
+        <h2>Equipes :</h2>
         <p>
             <table width="100%">
             <?php foreach($registeredTeamsList as $team) { ?>
                 <tr><td><b><?php echo $team['name']?></b></td></tr>
-                <tr><td width="5%"></td><td><?php foreach ($team['players'] as $player) { echo $player->getUserName()." "; } ?></td></tr>
+                <tr><td width="5%"></td><td><?php foreach ($team['players'] as $player) { echo '<span class="' . (($player->getPayment() == 1) ? 'green' : 'red') . '">' . htmlentities($player->getUserName())."</span> "; } ?></td></tr>
            <?php } ?>
             </table>
         </p>
-        <div>
-        </div>
     </section>
     <?php endif; ?>
 </article>

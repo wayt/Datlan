@@ -37,6 +37,10 @@ class AccountController extends AbstractController {
             return false;
         }
 
+        $user = $this->_auth->getIdentity();
+	$user = $this->_userMapper->fetchOneById($user->getId());
+	$this->_auth->setIdentity($user);
+
         $createForm = new CreateTeamForm($this->_teamMapper);
         $joinForm = new JoinTeamForm($this->_teamMapper, $this->_userMapper);
         $user = $this->_auth->getIdentity();
@@ -173,6 +177,7 @@ class AccountController extends AbstractController {
                 $user->setTeam(0);
                 $user->setStarcraft(0);
                 $user->setBorn($form->getElement('born')->getValue());
+                $user->setPayment(0);
                 $this->_userMapper->save($user);
 
                 $headers = 'From: no-reply@datlan.eu' . "\r\n" .

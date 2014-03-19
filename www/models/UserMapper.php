@@ -23,6 +23,7 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
         $user->setTeam($data['use_team']);
         $user->setStarcraft($data['use_starcraft']);
         $user->setBorn($data['use_born']);
+        $user->setPayment($data['use_payment']);
 
         return $user;
     }
@@ -44,7 +45,8 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
             'use_registered' => $user->getRegistered(),
             'use_team' => $user->getTeam(),
             'use_starcraft' => $user->getStarcraft(),
-            'use_born' => $user->getBorn()
+            'use_born' => $user->getBorn(),
+	    'use_payment' => $user->getPayment()
         ];
 
         if ($user->getId() == null) {
@@ -73,6 +75,11 @@ class UserMapper extends \Quokka\Database\AbstractMapper implements \Quokka\Auth
         );
 
         return $user;
+    }
+
+    public function fetchOneById($id) {
+
+        return $this->fetchOne('SELECT * FROM t_user WHERE use_id = ?', [$id]);
     }
 
     public function fetchOneByKey($key) {
